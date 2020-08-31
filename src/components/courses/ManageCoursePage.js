@@ -12,6 +12,7 @@ function ManageCoursePage({
   loadCourses,
   loadAuthors,
   saveCourse,
+  history,
   ...props
 }) {
   const [course, setCourse] = useState({ ...props.course });
@@ -43,7 +44,10 @@ function ManageCoursePage({
 
   function handleSave(event) {
     event.preventDefault();
-    saveCourse(course);
+    saveCourse(course).then(() => {
+      history.push("/courses");
+    });
+
   }
 
   return (
@@ -64,6 +68,7 @@ ManageCoursePage.propTypes = {
   loadCourses: propTypes.func.isRequired,
   loadAuthors: propTypes.func.isRequired,
   saveCourse: propTypes.func.isRequired,
+  history: propTypes.object.isRequired,
 };
 
 // Redux will magically call this when our state.courses object changes following
