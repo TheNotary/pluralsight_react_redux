@@ -1,6 +1,6 @@
 import * as types from "./actionTypes";
 import * as courseApi from "../../api/courseApi";
-import { beginApiCall } from "./apiStatusActions";
+import { beginApiCall, apiCallError } from "./apiStatusActions";
 
 // This is an Action Creator function, it creates an action meant to be sent to a reducer
 export function loadCoursesSuccess(courses) {
@@ -13,6 +13,10 @@ export function createCourseSuccess(course) {
 
 export function updateCourseSuccess(course) {
   return { type: types.UPDATE_COURSE_SUCCESS, course };
+}
+
+export function deleteCourseOptimistic(course) {
+  return { type: types.DELETE_COURSE_OPTIMISTIC, course };
 }
 
 // This is a thunk!  It calls the api, then sends the response to a reducer?
@@ -42,7 +46,15 @@ export function saveCourse(course) {
           : dispatch(createCourseSuccess(savedCourse));
       })
       .catch((error) => {
+        dispatch(apiCallError(error));
         throw error;
       });
+  };
+}
+
+export function deleteCourse(course) {
+  return function (dispatch) {
+    dispatch(deleteCourseOptimistic(course));
+    return courseApi.deleteCourse(course.id);
   };
 }
