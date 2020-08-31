@@ -36,6 +36,7 @@ class CoursesPage extends React.Component {
 CoursesPage.propTypes = {
   actions: propTypes.object.isRequired,
   courses: propTypes.array.isRequired,
+  authors: propTypes.array.isRequired,
 };
 
 // Redux will magically call this when our state.courses object changes following
@@ -46,12 +47,12 @@ function mapStateToProps(state) {
       state.authors.length === 0
         ? []
         : state.courses.map((course) => {
-            return {
-              ...course,
-              authorName: state.authors.find((a) => a.id === course.authorId)
-                .name,
-            };
-          }),
+          return {
+            ...course,
+            authorName: state.authors.find((a) => a.id === course.authorId)
+              .name,
+          };
+        }),
     authors: state.authors,
   };
 }

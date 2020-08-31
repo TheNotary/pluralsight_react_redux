@@ -11,6 +11,7 @@ function ManageCoursePage({
   authors,
   loadCourses,
   loadAuthors,
+  saveCourse,
   ...props
 }) {
   const [course, setCourse] = useState({ ...props.course });
@@ -33,8 +34,16 @@ function ManageCoursePage({
   function handleChange(event) {
     const { name, value } = event.target;
     setCourse((prevCourse) => ({
-      [name]: name === "authorId" ? parseInt(value, 10) : value,
+      ...prevCourse,
+      [name]: name === "authorId"
+        ? parseInt(value, 10)
+        : value,
     }));
+  }
+
+  function handleSave(event) {
+    event.preventDefault();
+    saveCourse(course);
   }
 
   return (
@@ -43,6 +52,7 @@ function ManageCoursePage({
       errors={errors}
       authors={authors}
       onChange={handleChange}
+      onSave={handleSave}
     />
   );
 }
@@ -53,6 +63,7 @@ ManageCoursePage.propTypes = {
   authors: propTypes.array.isRequired,
   loadCourses: propTypes.func.isRequired,
   loadAuthors: propTypes.func.isRequired,
+  saveCourse: propTypes.func.isRequired,
 };
 
 // Redux will magically call this when our state.courses object changes following
@@ -69,6 +80,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
   loadCourses: courseActions.loadCourses,
   loadAuthors: authorActions.loadAuthors,
+  saveCourse: courseActions.saveCourse,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ManageCoursePage);
