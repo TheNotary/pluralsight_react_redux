@@ -1,5 +1,6 @@
 import * as types from "./actionTypes";
 import * as courseApi from "../../api/courseApi";
+import { beginApiCall } from "./apiStatusActions";
 
 // This is an Action Creator function, it creates an action meant to be sent to a reducer
 export function loadCoursesSuccess(courses) {
@@ -17,6 +18,7 @@ export function updateCourseSuccess(course) {
 // This is a thunk!  It calls the api, then sends the response to a reducer?
 export function loadCourses() {
   return function (dispatch) {
+    dispatch(beginApiCall);
     return courseApi
       .getCourses()
       .then((courses) => {
@@ -31,14 +33,15 @@ export function loadCourses() {
 export function saveCourse(course) {
   //eslint-disable-next-line no-unused-vars
   return function (dispatch, getState) {
+    dispatch(beginApiCall);
     return courseApi
       .saveCourse(course)
-      .then(savedCourse => {
+      .then((savedCourse) => {
         course.id
           ? dispatch(updateCourseSuccess(savedCourse))
           : dispatch(createCourseSuccess(savedCourse));
       })
-      .catch(error => {
+      .catch((error) => {
         throw error;
       });
   };

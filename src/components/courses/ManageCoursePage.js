@@ -5,6 +5,7 @@ import * as authorActions from "../../redux/actions/authorActions";
 import propTypes from "prop-types";
 import CourseForm from "./CourseForm";
 import { newCourse } from "../../../tools/mockData";
+import Spinner from "../common/Spinner";
 
 function ManageCoursePage({
   courses,
@@ -38,9 +39,7 @@ function ManageCoursePage({
     const { name, value } = event.target;
     setCourse((prevCourse) => ({
       ...prevCourse,
-      [name]: name === "authorId"
-        ? parseInt(value, 10)
-        : value,
+      [name]: name === "authorId" ? parseInt(value, 10) : value,
     }));
   }
 
@@ -49,10 +48,11 @@ function ManageCoursePage({
     saveCourse(course).then(() => {
       history.push("/courses");
     });
-
   }
 
-  return (
+  return authors.length === 0 || courses.length === 0 ? (
+    <Spinner />
+  ) : (
     <CourseForm
       course={course}
       errors={errors}
@@ -75,7 +75,7 @@ ManageCoursePage.propTypes = {
 
 // This is a selector function, it selects data from the redux store
 export function getCourseBySlug(courses, slug) {
-  return courses.find(course => course.slug === slug) || null;
+  return courses.find((course) => course.slug === slug) || null;
 }
 
 // Redux will magically call this when our state.courses object changes following
