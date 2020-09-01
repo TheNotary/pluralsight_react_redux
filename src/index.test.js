@@ -1,3 +1,3 @@
 it("should pass", () => {
-  expect(true).toEqual(false);
+  expect(true).toEqual(true);
 });
