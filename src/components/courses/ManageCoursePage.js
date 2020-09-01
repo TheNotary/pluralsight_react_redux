@@ -8,7 +8,7 @@ import { newCourse } from "../../../tools/mockData";
 import Spinner from "../common/Spinner";
 import { toast } from "react-toastify";
 
-function ManageCoursePage({
+export function ManageCoursePage({
   courses,
   authors,
   loadCourses,
@@ -49,9 +49,9 @@ function ManageCoursePage({
     const { title, authorId, category } = course;
     const errors = {};
 
-    if (!title) errors.title = "Title required.";
-    if (!authorId) errors.author = "author required.";
-    if (!category) errors.category = "category required.";
+    if (!title) errors.title = "Title is required.";
+    if (!authorId) errors.author = "author is required.";
+    if (!category) errors.category = "category is required.";
 
     setErrors(errors);
     // Form is valid if the errors object still has no properties
