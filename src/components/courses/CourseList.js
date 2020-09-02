@@ -16,7 +16,7 @@ const CourseList = ({ courses, onDeleteClick }) => (
     <tbody>
       {courses.map((course) => {
         return (
-          <tr key={course.id}>
+          <tr key={course.id} className="course">
             <td>
               <a
                 className="btn btn-light"
@@ -32,7 +32,7 @@ const CourseList = ({ courses, onDeleteClick }) => (
             <td>{course.category}</td>
             <td>
               <button
-                className="btn btn-outline-danger"
+                className="btn btn-outline-danger delete-course-btn"
                 onClick={() => onDeleteClick(course)}
               >
                 Delete

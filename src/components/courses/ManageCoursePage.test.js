@@ -26,3 +26,7 @@ it("sets error when attempting to save an empty title field", () => {
   const error = wrapper.find(".alert").first();
   expect(error.text()).toBe("Title is required.");
 });
+
+// Test the initial state of having no courses, then create a course, then test the end result of having the course show up?
+
+// Broaden your scope from the useEffect function call to the actual outputs of the JSX rendering
