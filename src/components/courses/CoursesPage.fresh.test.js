@@ -57,7 +57,7 @@ describe("CoursesPage", () => {
 
     // await waitFor(() => screen.getByText("Course deleted"));
     // screen.debug();
-    expect(screen.getAllByText("Delete").length).toBe(9);
+    expect(screen.getAllByText("Delete").length).toBe(9); // Fails: Expected 9, but Received 10
 
     // expect(screen.getByRole("heading")).toHaveTextContent("hello there");
     // expect(screen.getByRole("button")).toHaveAttribute("disabled");
