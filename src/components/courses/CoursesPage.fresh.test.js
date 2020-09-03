@@ -52,11 +52,16 @@ describe("CoursesPage", () => {
       </Provider>
     );
 
+    // 1. Find all <tr> items by className == course
+    // 2. Get first course
+    // 3. Console.log it's Key attribute
+
     expect(screen.getAllByText("Delete").length).toBe(10);
     fireEvent.click(screen.getAllByText("Delete")[0]);
 
     // await waitFor(() => screen.getByText("Course deleted"));
-    // screen.debug();
+    // await waitFor(() => expect(mockAPI).toHaveBeenCalledTimes(1));
+
     expect(screen.getAllByText("Delete").length).toBe(9); // Fails: Expected 9, but Received 10
 
     // expect(screen.getByRole("heading")).toHaveTextContent("hello there");
