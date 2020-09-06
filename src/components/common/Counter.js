@@ -25,17 +25,18 @@ const Counter = ({ dispatch, count }) => {
   );
 };
 
-Counter.propTypes = {
-  count: propTypes.number.isRequired,
-};
+// Counter.propTypes = {
+//   count: propTypes.number.isRequired,
+//   dispatch: propTypes.func.isRequired,
+// };
 
 function mapStateToProps(state) {
   return { count: state.count };
   // return { count: 0 };
 }
 
-function mapDispatchToProps(dispatch) {
-  return;
-}
+// function mapDispatchToProps(dispatch) {
+//   return;
+// }
 
 export default connect(mapStateToProps)(Counter);
