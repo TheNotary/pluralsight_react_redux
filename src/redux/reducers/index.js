@@ -9,11 +9,6 @@ const rootReducer = combineReducers({
   authors: authors,
   apiCallsInProgress: apiCallsInProgress,
   count: count,
-  // count: (state = 0, action) => {
-  //   if (action.type === "INCREMENT") return state + 1;
-  //   if (action.type === "DECREMENT") return state - 1;
-  //   return state;
-  // },
 });
 
 export default rootReducer;

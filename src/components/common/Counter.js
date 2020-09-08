@@ -32,7 +32,6 @@ Counter.propTypes = {
 
 function mapStateToProps(state) {
   return { count: state.count };
-  // return { count: 0 };
 }
 
 // function mapDispatchToProps(dispatch) {
