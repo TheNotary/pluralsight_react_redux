@@ -5,13 +5,21 @@ import { createStore } from "redux";
 import { Provider } from "react-redux";
 import reducer from "../../redux/reducers/countReducer";
 // import { rootReducer as reducer } from "../../redux/reducers";
-import initialState1 from "../../redux/reducers/initialState";
-import propTypes from "prop-types";
+import defaultInitialState from "../../redux/reducers/initialState";
+import {
+  getByLabelText,
+  getByText,
+  getByTestId,
+  queryByTestId,
+  // Tip: all queries are also exposed on an object
+  // called "queries" which you could import here as well
+  waitFor,
+} from "@testing-library/dom";
 
 function render(
   ui,
   {
-    initialState = initialState1,
+    initialState = defaultInitialState,
     store = createStore(reducer, initialState),
     ...renderOptions
   } = {}
